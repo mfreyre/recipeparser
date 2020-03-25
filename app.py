@@ -1,6 +1,8 @@
 def main():
     print "hello world"
-    print "please enter filename:"
+    filename = raw_input("please enter filename:")
+    print filename
+
 
 
 if __name__ == "__main__":
