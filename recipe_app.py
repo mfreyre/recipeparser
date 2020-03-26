@@ -8,6 +8,7 @@ def main():
     contents = list(f)
     f.close()
 
+    recipe_csv = open("recipe.csv", "w+")
 
     #conversion to csv occurs here:
     for line in contents:
@@ -23,6 +24,9 @@ def main():
         ingredient = " ".join(wordlist[unit_idx:ingredient_idx])
         newline = ",".join([amt, unit, ingredient])
         print newline
+        recipe_csv.write(newline + "\n")
+
+    recipe_csv.close()
 
 
 
