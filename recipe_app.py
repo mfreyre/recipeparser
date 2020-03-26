@@ -42,7 +42,7 @@ def guessAtSolution(wordlist):
     # get all words with numbers in it:
     idx = 0
     amt_words = []
-    while (wordlist[idx][0].isdigit()):
+    while (wordlist[idx][0].isdigit() or wordlist[idx].lower() in Amounts.number_words):
         amt_words.append(wordlist[idx])
         idx += 1
     amt = " ".join(amt_words)
