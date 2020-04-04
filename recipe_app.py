@@ -1,7 +1,12 @@
 from amounts import Amounts
+import sys, getopt
 
-def main():
-    filename = raw_input("please enter filename: ")
+def main(argv):
+    opts, args = getopt.getopt(argv, "i:")
+    for opt, arg in opts:
+        if opt  == "-i":
+            filename = arg
+
     if filename == "":
         filename = "testrecipe.txt"
     f = open(filename, "r")
@@ -17,7 +22,7 @@ def main():
         newline = guessAtSolution(wordlist)
         print "i have a guess, and my guess is " + newline
         ok = raw_input("was that right? Y/N ")
-        if ok != "Y":
+        if ok not in ["Y", "y"]:
             newline = getUserInputSolution(wordlist)
 
         recipe_csv.write(newline + "\n")
@@ -51,7 +56,7 @@ def guessAtSolution(wordlist):
     idx += 1
     ingredient = " ".join(wordlist[idx:len(wordlist)])
 
-    return ",".join([amt, unit, ingredient])
+    return ",".join([ingredient, amt, unit])
 
 
 
@@ -62,4 +67,4 @@ def guessAtSolution(wordlist):
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
